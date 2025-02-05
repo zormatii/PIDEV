@@ -1,0 +1,12 @@
+controllers:
+    resource: '../src/Controller/'
+    type: attribute
+
+ticket_page:
+    path: /ticket
+    controller: App\Controller\TicketController::ticket
+
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
