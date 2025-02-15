@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -7,8 +8,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Festava Live - Bootstrap 5 CSS Template</title>
-
+        <title>{% block title %}VivaCulture{% endblock %}</title>
+        {% block css%}
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         
@@ -21,7 +22,7 @@
         <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
 
         <link href="{{ asset('css/templatemo-festava-live.css') }}" rel="stylesheet">
-        
+        {% endblock %}
 <!--
 
 TemplateMo 583 Festava Live
@@ -32,7 +33,7 @@ https://templatemo.com/tm-583-festava-live
     </head>
     
     <body>
-
+        {% block body %}
         <main>
 
             <header class="site-header">
@@ -54,10 +55,13 @@ https://templatemo.com/tm-583-festava-live
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="{{path('home')}}">
-                        Festava Live
+                        VivaCulture
                     </a>
 
                     <a href="{{ path('ticket') }}" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>
+                    <a href="{{ path('signin') }}" class="btn btn-outline-light ms-2">Sign In</a>
+                    <a href="{{ path('signup') }}" class="btn btn-outline-light ms-2">Sign Up</a>
+                    <a href="{{ path('dash_page') }}" class="btn btn-outline-light ms-2">dash</a>
     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -91,6 +95,7 @@ https://templatemo.com/tm-583-festava-live
                         </ul>
 
                         <a href="{{ path('ticket') }}" class="btn custom-btn d-lg-block d-none">Buy Ticket</a>
+                        <a href="{{ path('app_user_index') }}" class="btn custom-btn">User Management</a>
                     </div>
                 </div>
             </nav>
@@ -678,13 +683,14 @@ https://templatemo.com/tm-583-festava-live
 T e m p l a t e M o
 
 -->
-
+        {% block js %}
         <!-- JAVASCRIPT FILES -->
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/jquery.sticky.js') }}"></script>
         <script src="{{ asset('js/click-scroll.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
-
+        {% endblock %}
+    {% endblock %}
     </body>
 </html>
