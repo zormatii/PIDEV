@@ -13,4 +13,9 @@ class DashController extends AbstractController
     {
         return $this->render('back/dashboard.html.twig');
     }
+    #[Route("/tables", name: "tables")]
+    public function tables(): Response
+    {
+        return $this->render('back/tables.html.twig');
+    }
 }

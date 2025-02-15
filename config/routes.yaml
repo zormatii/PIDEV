@@ -37,3 +37,7 @@ app_user_edit:
 app_user_delete:
     path: /user/{id}
     controller: App\Controller\UserController::delete
+
+tables:
+    path: /tables
+    controller: App\Controller\DashController::tables
