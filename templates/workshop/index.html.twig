@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Workshop index{% endblock %}
+
+{% block body %}
+    <h1>Workshops</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Lieu</th>
+                <th>Capicite</th>
+                <th>Duree</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for workshop in workshops %}
+            <tr>
+                <td>{{ workshop.id }}</td>
+                <td>{{ workshop.titre }}</td>
+                <td>{{ workshop.description }}</td>
+                <td>{{ workshop.date ? workshop.date|date('Y-m-d') : '' }}</td>
+                <td>{{ workshop.lieu }}</td>
+                <td>{{ workshop.capicite }}</td>
+                <td>{{ workshop.duree }}</td>
+                
+                <td>
+                    <a href="{{ path('app_workshop_show', {'id': workshop.id}) }}" class="btn btn-primary">Show</a>
+                   <a href="{{ path('app_workshop_edit', {'id': workshop.id}) }}" class="btn btn-success">edit</a>
+                   <a href="https://www.google.com/maps/search/?api=1&query={{ workshop.lieu | url_encode }}" 
+                   target="_blank" 
+                   class="btn btn-primary">
+                   Voir sur Google Maps
+                </a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <button onclick="window.location.href='{{ path('app_workshop_new') }}'" class="btn btn-primary">
+        Create new
+    </button>
+    
+{% endblock %}
+

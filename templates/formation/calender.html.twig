@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier{% endblock %}
+
+{% block body %}
+    <h1>Calendrier des Formations</h1>
+    <div id="calendar"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'fr',
+                initialView: 'dayGridMonth',
+                editable: true, 
+                selectable: true,
+                events: '/api/formations', // Charge les formations depuis l'API
+
+                eventClick: function(info) {
+                    if (confirm("Voulez-vous annuler cette formation ?")) {
+                        fetch('/formation/api/formations/' + info.event.id + '/delete', { 
+                            method: 'DELETE',
+                            headers: { 'Content-Type': 'application/json' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                info.event.remove();
+                                alert("Formation supprimée !");
+                            } else {
+                                alert("Erreur : " + data.message);
+                            }
+                        })
+                        .catch(error => alert("Erreur de suppression."));
+                    }
+                },
+                
+                eventDrop: function(info) { 
+                    var newStart = info.event.start.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                    var newEnd = info.event.end ? info.event.end.toISOString().split('T')[0] : null;
+                    
+                    fetch('/formation/api/formations/' + info.event.id + '/edit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ start: newStart, end: newEnd })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            alert("Erreur lors de la mise à jour.");
+                            info.revert();
+                        }
+                    })
+                    .catch(error => {
+                        alert("Erreur de communication avec le serveur.");
+                        info.revert();
+                    });
+                }
+            });
+            
+            calendar.render();
+        });
+    </script>
+
+    <style>
+        /* Styles généraux du calendrier */
+        #calendar {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+    
+        /* Personnalisation des en-têtes */
+        .fc-toolbar {
+            background: #007bff;
+            color: white;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        /* Style des boutons du calendrier */
+        .fc-button {
+            background: #0056b3 !important;
+            color: white !important;
+            border-radius: 5px !important;
+            padding: 8px 12px !important;
+            font-size: 14px !important;
+            text-transform: capitalize !important;
+        }
+    
+        .fc-button:hover {
+            background: #003d80 !important;
+        }
+    
+        /* Style des cellules du calendrier */
+        .fc-daygrid-day {
+            border: 1px solid #ddd !important;
+            transition: background 0.3s ease-in-out;
+        }
+    
+        .fc-daygrid-day:hover {
+            background: #f1f1f1 !important;
+        }
+    
+        /* Personnalisation des événements */
+        .fc-event {
+            background: #28a745 !important;
+            border: none !important;
+            border-radius: 5px !important;
+            font-weight: bold !important;
+            padding: 5px !important;
+            text-align: center;
+        }
+    
+        .fc-event:hover {
+            background: #218838 !important;
+            transform: scale(1.05);
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+{% endblock %}

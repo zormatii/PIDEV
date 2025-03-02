@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte avec Leaflet{% endblock %}
+
+{% block body %}
+    <div id="map" style="width: 100%; height: 500px;"></div>
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="{{ path('app_evenement_index') }}" class="btn btn-primary">Retour à la liste des événements</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialiser la carte centrée sur Paris par défaut
+            var map = L.map("map").setView([48.8566, 2.3522], 6);
+
+            // Ajouter les tuiles OpenStreetMap
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Charger les événements via l'API
+            fetch("/api/evenements")
+                .then(response => response.json())
+                .then(data => {
+                    console.log("📌 Événements chargés :", data);
+
+                    data.forEach(event => {
+                        if (!event.latitude || !event.longitude) {
+                            console.warn("⚠️ Coordonnées manquantes pour", event);
+                            return;
+                        }
+
+                        console.log(`📍 Marqueur ajouté pour: ${event.titre} - Latitude: ${event.latitude}, Longitude: ${event.longitude}`);
+
+                        // Créer le marqueur sans titre pour éviter le label "Mark"
+                        var marker = L.marker([event.latitude, event.longitude], { title: "" }).addTo(map);
+
+                        // Récupérer l'URL de l'image (si disponible), sinon utiliser une image par défaut
+                        var imageUrl = event.url_image 
+                            ? `/uploads/images/${event.url_image}` 
+                            : "{{ asset('images/default-event.jpg') }}";
+
+                        // Construire le contenu du popup
+                        var popupContent = `
+                            <b>Nom de l'événement : ${event.titre}</b><br>
+                            Date : ${event.date}<br>
+                            <img src="${imageUrl}" alt="${event.titre}" width="150">
+                        `;
+
+                        // Lier le popup au marqueur
+                        marker.bindPopup(popupContent);
+                    });
+                })
+                .catch(error => console.error("❌ Erreur lors du chargement des événements :", error));
+        });
+    </script>
+{% endblock %}

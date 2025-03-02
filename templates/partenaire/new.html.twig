@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Partner{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container-fluid vh-100 d-flex justify-content-center align-items-center" style="background: url('{{ asset('C:/Users/Admin/Downloads/yellow-orange-foggy-show-lights-concert.jpg') }}') no-repeat center center; background-size: cover;">
+            <div class="card shadow-lg p-4" style="max-width: 500px; background-color: rgba(255, 255, 255, 0.9);">
+                <h1 class="text-center mb-4">Create a New Partner</h1>
+
+                {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.nomP) }}
+                    {{ form_widget(form.nomP, {'attr': {'class': 'form-control', 'placeholder': 'Enter partner name', 'required': true}}) }}
+                    {% if form.nomP.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">
+                            {% for error in form.nomP.vars.errors %}
+                                {{ error.message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.emailP) }}
+                    {{ form_widget(form.emailP, {'attr': {'class': 'form-control', 'placeholder': 'Enter email', 'required': true}}) }}
+                    {% if form.emailP.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">
+                            {% for error in form.emailP.vars.errors %}
+                                {{ error.message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.telephone) }}
+                    {{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'placeholder': 'Enter telephone', 'required': true}}) }}
+                    {% if form.telephone.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">
+                            {% for error in form.telephone.vars.errors %}
+                                {{ error.message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.typeP) }}
+                    {{ form_widget(form.typeP, {'attr': {'class': 'form-control', 'required': true}}) }}
+                    {% if form.typeP.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">
+                            {% for error in form.typeP.vars.errors %}
+                                {{ error.message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.collaboration) }}
+                    {{ form_widget(form.collaboration, {'attr': {'class': 'form-control', 'required': true}}) }}
+                    {% if form.collaboration.vars.errors|length > 0 %}
+                        <div class="invalid-feedback">
+                            {% for error in form.collaboration.vars.errors %}
+                                {{ error.message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {{ form_end(form) }}
+
+                <a href="{{ path('app_partenaire_view') }}" class="btn btn-secondary mt-3">Back to list</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

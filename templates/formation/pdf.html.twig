@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Formations</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <h2>Liste des Formations</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
+                <th>Capacité</th>
+                <th>Mode</th>
+                <th>workshop</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for formation in formations %}
+                <tr>
+                    <td>{{ formation.id }}</td>
+                    <td>{{ formation.titre }}</td>
+                    <td>{{ formation.datedebut ? formation.datedebut|date('d/m/Y') : 'N/A' }}</td>
+                    <td>{{ formation.datefin ? formation.datefin|date('d/m/Y') : 'N/A' }}</td>
+                    <td>{{ formation.capacite }}</td>
+                    <td>{{ formation.modeFormation }}</td>
+                    <td>{{ formation.workshop.titre }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_widget(form) }}
+<button type="submit" class="{{ button_class|default('btn btn-primary') }}">{{ button_label }}</button>
+
+    
+{{ form_end(form) }}

@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques des Réservations{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center">📊 Statistiques des Réservations</h2>
+
+    <!-- Bouton Retour au Dashboard -->
+    <div class="text-start mt-3">
+        <a href="{{ path('dash_page') }}" class="btn btn-secondary">⬅ Retour au Dashboard</a>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Carte pour Total des Réservations et Graphique Circulaire -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center font-weight-bold">📌 Total des Réservations</div>
+                <div class="card-body text-center">
+                    <h3 class="card-title">{{ totalReservations }}</h3>
+                    <div class="chart-container">
+                        <canvas id="reservationsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte pour Réservations par Événement -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center font-weight-bold">📊 Réservations par Événement</div>
+                <div class="card-body">
+                    <div class="chart-container-large">
+                        <canvas id="reservationsByEventChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .chart-container {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+        margin: auto;
+    }
+
+    .chart-container-large {
+        width: 100%;
+        max-width: 700px; /* Augmenter la largeur */
+        height: 450px; /* Augmenter la hauteur */
+        margin: auto;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Graphique circulaire des réservations
+        var ctx = document.getElementById('reservationsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Réservations'],
+                datasets: [{
+                    data: [{{ totalReservations }}],
+                    backgroundColor: ['#ff0060'], // Nouvelle couleur
+                    borderColor: ['#ffffff'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%'
+            }
+        });
+
+        // Histogramme des réservations par événement
+        var ctxBar = document.getElementById('reservationsByEventChart').getContext('2d');
+        var reservationsByEvent = {{ reservationsByEvent|raw }};
+
+        var labels = reservationsByEvent.map(item => item.eventName);
+        var data = reservationsByEvent.map(item => item.count);
+
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre de réservations par événement',
+                    data: data,
+                    backgroundColor: '#ff0060', // Nouvelle couleur
+                    borderColor: '#ff0060',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Permet d'agrandir le graphique
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du Commentaire{% endblock %}
+
+{% block body %}
+
+
+
+
+
+<header class="site-header">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+                <p class="d-flex me-4 mb-0">
+                    <i class="bi-person custom-icon me-2"></i>
+                    <strong class="text-dark">Welcome to Music Festival 2023</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-5 animate__animated animate__fadeIn">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h1 class="display-4">Détail du Commentaire</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr><th>Id</th><td>{{ commentaire.id }}</td></tr>
+                    <tr><th>Contenu</th><td>{{ commentaire.contenu }}
+                        <form method="GET" action="{{ path('app_commentaire_show', {id: commentaire.id}) }}" class="mt-2">
+                            <select name="lang" class="form-select" onchange="this.form.submit()">
+                                <option value="fr" {{ lang == 'fr' ? 'selected' : '' }}>Français</option>
+                                <option value="en" {{ lang == 'en' ? 'selected' : '' }}>Anglais</option>
+                                <option value="es" {{ lang == 'es' ? 'selected' : '' }}>Espagnol</option>
+                                <option value="de" {{ lang == 'de' ? 'selected' : '' }}>Allemand</option>
+                            </select>
+                        </form>
+                        <div class="mt-3 p-2 bg-light border rounded">{{ contenu }}</div>
+                    </td></tr>
+                    <tr><th>Auteur</th><td>{{ commentaire.auteur }}</td></tr>
+                    <tr><th>Date</th><td>{{ commentaire.dateDepublication ? commentaire.dateDepublication|date('Y-m-d H:i:s') : '' }}</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="mt-4">Vote sur le commentaire</h2>
+            <div class="d-flex gap-3">
+                <form method="POST" action="{{ path('app_commentaire_like', {'id': commentaire.id}) }}">
+                    <button type="submit" class="btn btn-success">👍 {{ commentaire.likes }}</button>
+                </form>
+                <form method="POST" action="{{ path('app_commentaire_dislike', {'id': commentaire.id}) }}">
+                    <button type="submit" class="btn btn-danger">👎 {{ commentaire.dislikes }}</button>
+                </form>
+                <form method="POST" action="{{ path('app_commentaire_favori', {'id': commentaire.id}) }}">
+                    <button type="submit" class="btn btn-warning">
+                        {% if commentaire.favori %}
+                            ⭐ Retirer des favoris
+                        {% else %}
+                            ☆ Ajouter aux favoris
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+
+            <div data-notification-target="container"></div>
+
+            <h2 class="mt-5">Répondre au commentaire</h2>
+            <button onclick="toggleForm('reponse')" class="btn btn-info mb-3">Répondre</button>
+
+            <form id="form-reponse" style="display: none;" method="POST" action="{{ path('app_commentaire_show', {'id': commentaire.id}) }}">
+                {{ form_start(form) }}
+                    {{ form_widget(form.contenu, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Votre réponse...'}}) }}
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                {{ form_end(form) }}
+            </form>
+
+            <h3 class="mt-5">Réponses :</h3>
+            {% macro render_thread(reponse) %}
+                <div class="ms-4 p-3 border rounded bg-light mt-2">
+                    <p>{{ reponse.contenu }}</p>
+                    <small class="text-muted">Par {{ reponse.auteur }} - {{ reponse.dateDepublication|date('Y-m-d H:i:s') }}</small>
+                    {% for sous_reponse in reponse.reponses %}
+                        {{ _self.render_thread(sous_reponse) }}
+                    {% endfor %}
+                </div>
+            {% endmacro %}
+
+            {% for reponse in commentaire.reponses %}
+                {{ _self.render_thread(reponse) }}
+            {% endfor %}
+
+            <div data-controller="notification" data-notification-target="container"></div>
+
+            {% for message in app.flashes('success') %}
+            <script>
+                document.dispatchEvent(new CustomEvent('notification:show', {
+                    detail: { message: "{{ message }}" }
+                }));
+            </script>
+            {% endfor %}
+
+            <a href="{{ path('app_commentaire_index') }}" class="btn btn-secondary mt-4">Retour</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleForm(id) {
+        let form = document.getElementById("form-" + id);
+        form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+</script>
+
+{% endblock %}

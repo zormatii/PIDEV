@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create a new category{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Create a new category</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.nom, 'Name', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.nom.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.description.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+          <div class="mb-3">
+            {{ form_label(form.url_image, 'Image', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.url_image, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.url_image.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.statut, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.statut, {'attr': {'class': 'form-check-input'}}) }}
+            <div class="text-danger">
+                {% for error in form.statut.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Category</button>
+
+            <a href="{{ path('tables') }}">back to list</a>
+
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

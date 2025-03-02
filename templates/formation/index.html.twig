@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation index{% endblock %}
+
+{% block body %}
+    <h1>Formation index</h1>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Formulaire de recherche -->
+            <div class="col-md-6">
+                <form method="get" action="{{ path('app_formation_search') }}" class="d-flex">
+                    <input type="text" name="q" value="{{ query ?? '' }}" class="form-control me-2" placeholder="Rechercher une formation...">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </form>
+            </div>
+
+            <!-- Formulaire de tri -->
+            <div class="col-md-6">
+                <form method="get" action="{{ path('app_formation_trier') }}" class="d-flex">
+                    <button type="submit" class="btn btn-secondary">Trier par date</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Capacité</th>
+                <th>Titre</th>
+                <th>Statut</th>
+                <th>ModeFormation</th>
+                <th>Workshop</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>
+                <td>{{ formation.capacite }}</td>
+                <td>{{ formation.titre }}</td>
+                <td>{{ formation.statut ? 'Yes' : 'No' }}</td>
+                <td>{{ formation.modeFormation }}</td>
+                <td>{{ formation.workshop.titre }}</td>
+                <td>
+                    <a href="{{ path('app_formation_show', {'id': formation.id}) }}" class="btn btn-primary">Show</a>
+                    <a href="{{ path('app_formation_edit', {'id': formation.id}) }}" class="btn btn-success">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <button onclick="window.location.href='{{ path('app_formation_new') }}'" class="btn btn-primary">
+        Create new
+    </button>
+{% endblock %}

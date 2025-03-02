@@ -1,0 +1,751 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %}VivaCulture{% endblock %}</title>
+        {% block css%}
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+                
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('css/templatemo-festava-live.css') }}" rel="stylesheet">
+        {% endblock %}
+<!--
+
+TemplateMo 583 Festava Live
+
+https://templatemo.com/tm-583-festava-live
+
+-->
+    </head>
+    
+    <body>
+        {% block body %}
+        <main>
+
+            <header class="site-header">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-12 d-flex flex-wrap">
+                            <p class="d-flex me-4 mb-0">
+                                <i class="bi-person custom-icon me-2"></i>
+                                <strong class="text-dark">Welcome to Music Festival 2023</strong>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{{path('home')}}">
+                        VivaCulture
+                    </a>
+
+                    
+                    <a href="{{ path('signin') }}" class="btn btn-outline-light ms-2">Sign In</a>
+                    <a href="{{ path('dash_page') }}" class="btn btn-outline-light ms-2">dash</a>
+                  <a href="{{ path('app_partenaire_view') }}" class="btn btn-outline-light ms-2">partner</a>
+                    <a href="{{ path('app_formation_index') }}" class="btn btn-outline-light ms-2">formation</a>
+                    <a href="{{ path('app_workshop_index') }}" class="btn btn-outline-light ms-2">workshop</a>
+                      <a href="{{ path('app_evenement_index') }}" class="btn btn-outline-light ms-2">event</a>
+                    <a href="{{ path('app_reservation_index') }}" class="btn btn-outline-light ms-2">reservation</a>
+                     <a href="{{ path('app_ticket_index') }}" class="btn btn-outline-light ms-2">ticket</a>
+
+
+
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_2">About</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_3">Artists</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_4">Schedule</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">Pricing</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_6">Contact</a>
+                            </li>
+                        </ul>
+
+                        
+                        <a href="{{ path('app_user_index') }}" class="btn custom-btn">User Management</a>
+                    </div>
+                </div>
+            </nav>
+            
+
+            <section class="hero-section" id="section_1">
+                <div class="section-overlay"></div>
+
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div class="row">
+
+                        <div class="col-12 mt-auto mb-5 text-center">
+                            <small>Festava Live Presents</small>
+
+                            <h1 class="text-white mb-5">Night Live 2023</h1>
+
+                            <a class="btn custom-btn smoothscroll" href="#section_2">Let's begin</a>
+                        </div>
+
+                        <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
+                            <div class="date-wrap">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-clock me-2"></i>
+                                    10 - 12<sup>th</sup>, Dec 2023
+                                </h5>
+                            </div>
+
+                            <div class="location-wrap mx-auto py-3 py-lg-0">
+                                <h5 class="text-white">
+                                    <i class="custom-icon bi-geo-alt me-2"></i>
+                                    National Center, United States
+                                </h5>
+                            </div>
+
+                            <div class="social-share">
+                                <ul class="social-icon d-flex align-items-center justify-content-center">
+                                    <span class="text-white me-3">Share:</span>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-facebook"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-twitter"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="social-icon-item">
+                                        <a href="#" class="social-icon-link">
+                                            <span class="bi-instagram"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+<source src="{{ asset('video/pexels-2022395.mp4') }}" type="video/mp4">
+
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+
+            
+<section class="artists-section section-padding" id="section_3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-4 font-weight-bold text-primary">Create a New Event</h2>
+                <p class="lead text-muted">Fill out the form below to create a new event.</p>
+            </div>
+
+            <div class="col-lg-8 col-md-10 col-12">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation event-form'}}) }}
+
+                <div class="mb-4">
+                    {{ form_label(form.mail, 'Mail adress', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.mail, {'attr': {'class': 'form-control', 'placeholder': 'enter a mail adress for confirmation', 'rows': 4, 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Please provide a adress mail.</div>
+                </div>
+
+                <!-- Event Type Field -->
+                <div class="mb-4">
+                    {{ form_label(form.typeEvenement, 'Event Type', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.typeEvenement, {'attr': {'class': 'form-select', 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Please select an event type.</div>
+                </div>
+
+                <!-- Title Field -->
+                <div class="mb-4">
+                    {{ form_label(form.titre, 'Title', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.titre, {'attr': {'class': 'form-control', 'placeholder': 'Enter the event title', 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Please enter a valid title.</div>
+                </div>
+
+                <!-- Description Field -->
+                <div class="mb-4">
+                    {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Describe the event', 'rows': 4, 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Please provide a description.</div>
+                </div>
+
+                <!-- Number of Seats Field -->
+                <div class="mb-4">
+                    {{ form_label(form.nombre_de_places, 'Number of Seats', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.nombre_de_places, {'attr': {'class': 'form-control', 'type': 'number', 'min': '1', 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Please enter a positive number of seats.</div>
+                </div>
+
+                <!-- Start Date Field -->
+                <div class="mb-4">
+                    {{ form_label(form.date_debut, 'Start Date', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.date_debut, {'attr': {'class': 'form-control', 'type': 'datetime-local', 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Please select a valid start date.</div>
+                </div>
+
+                <!-- End Date Field -->
+                <div class="mb-4">
+                    {{ form_label(form.date_fin, 'End Date', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.date_fin, {'attr': {'class': 'form-control', 'type': 'datetime-local', 'required': 'required'}}) }}
+                    <div class="invalid-feedback">End date must be after the start date.</div>
+                </div>
+
+                <!-- Image URL Field -->
+                <div class="mb-4">
+                    {{ form_label(form.url_image, 'Image URL', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.url_image, {'attr': {'class': 'form-control', 'placeholder': 'Upload an image'}}) }}
+                </div>
+
+                <!-- Location Field -->
+                <div class="mb-4">
+                    {{ form_label(form.lieu, 'Location', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.lieu, {'attr': {'class': 'form-control', 'placeholder': 'Enter the location', 'required': 'required'}}) }}
+                    <div class="invalid-feedback">Location is required.</div>
+                </div>
+
+                <!-- Latitude and Longitude Fields (Creative Layout) -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        {{ form_label(form.latitude, 'Latitude', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.latitude, {'attr': {'class': 'form-control', 'type': 'number', 'step': 'any', 'required': 'required'}}) }}
+                        <div class="invalid-feedback">Please enter a valid latitude.</div>
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_label(form.longitude, 'Longitude', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.longitude, {'attr': {'class': 'form-control', 'type': 'number', 'step': 'any', 'required': 'required'}}) }}
+                        <div class="invalid-feedback">Please enter a valid longitude.</div>
+                    </div>
+                </div>
+
+                <!-- Status Field -->
+                <div class="mb-4">
+                    {{ form_label(form.statut, 'Status', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mt-5">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calendar-plus"></i> Create Event
+                    </button>
+                    <a href="{{ path('app_evenement_index') }}" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Global Styles */
+.artists-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.event-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 8px;
+}
+
+/* Form Inputs */
+.form-control, .form-select {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+/* Error Messages */
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Icons */
+.fas {
+    margin-right: 8px;
+}
+
+/* Creative Layout for Latitude and Longitude */
+.row.mb-4 {
+    background-color: #f1f3f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.row.mb-4 .col-md-6 {
+    padding: 0 10px;
+}
+</style>
+
+
+
+            <section class="schedule-section section-padding" id="section_4">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h2 class="text-white mb-4">Event Schedule</h1>
+
+                            <div class="table-responsive">
+                                <table class="schedule-table table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+
+                                            <th scope="col">Wednesday</th>
+
+                                            <th scope="col">Thursday</th>
+
+                                            <th scope="col">Friday</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Day 1</th>
+
+                                            <td class="table-background-image-wrap pop-background-image">
+                                                <h3>Pop Night</h3>
+
+                                                <p class="mb-2">5:00 - 7:00 PM</p>
+
+                                                <p>By Adele</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+
+                                            <td style="background-color: #F3DCD4"></td>
+
+                                            <td class="table-background-image-wrap rock-background-image">
+                                                <h3>Rock & Roll</h3>
+
+                                                <p class="mb-2">7:00 - 11:00 PM</p>
+
+                                                <p>By Rihana</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Day 2</th>
+                
+                                            <td style="background-color: #ECC9C7"></td>
+
+                                            <td>
+                                                <h3>DJ Night</h3>
+
+                                                <p class="mb-2">6:30 - 9:30 PM</p>
+
+                                                <p>By Rihana</p>
+                                            </td>
+
+                                            <td style="background-color: #D9E3DA"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Day 3</th>
+                
+                                            <td class="table-background-image-wrap country-background-image">
+                                                <h3>Country Music</h3>
+
+                                                <p class="mb-2">4:30 - 7:30 PM</p>
+
+                                                <p>By Rihana</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+
+                                            <td style="background-color: #D1CFC0"></td>
+
+                                            <td>
+                                                <h3>Free Styles</h3>
+
+                                                <p class="mb-2">6:00 - 10:00 PM</p>
+
+                                                <p>By Members</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="pricing-section section-padding section-bg" id="section_5">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4">Plans, you' love</h2>
+                        </div>
+                        
+                        <div class="col-lg-6 col-12">
+                            <div class="pricing-thumb">
+                                <div class="d-flex">
+                                    <div>
+                                        <h3><small>Early Bird</small> $120</h3>
+
+                                        <p>Including good things:</p>
+                                    </div>
+
+                                    <p class="pricing-tag ms-auto">Save up to <span>50%</span></h2>
+                                </div>
+
+                                <ul class="pricing-list mt-3">
+                                    <li class="pricing-list-item">platform for potential customers</li>
+
+                                    <li class="pricing-list-item">digital experience</li>
+
+                                    <li class="pricing-list-item">high-quality sound</li>
+
+                                    <li class="pricing-list-item">standard content</li>
+                                </ul>
+
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                            <div class="pricing-thumb">
+                                <div class="d-flex">
+                                    <div>
+                                        <h3><small>Standard</small> $240</h3>
+
+                                        <p>What makes a premium festava?</p>
+                                    </div>
+                                </div>
+
+                                <ul class="pricing-list mt-3">
+                                    <li class="pricing-list-item">platform for potential customers</li>
+
+                                    <li class="pricing-list-item">digital experience</li>
+
+                                    <li class="pricing-list-item">high-quality sound</li>
+
+                                    <li class="pricing-list-item">premium content</li>
+                                    
+                                    <li class="pricing-list-item">live chat support</li>
+                                </ul>
+
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="contact-section section-padding" id="section_6">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h2 class="text-center mb-4">Interested? Let's talk</h2>
+
+                            <nav class="d-flex justify-content-center">
+                                <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactForm" type="button" role="tab" aria-controls="nav-ContactForm" aria-selected="false">
+                                        <h5>Contact Form</h5>
+                                    </button>
+
+                                    <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap" type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
+                                        <h5>Google Maps</h5>
+                                    </button>
+                                </div>
+                            </nav>
+
+                            <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel" aria-labelledby="nav-ContactForm-tab">
+                                    <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post" role="form">
+                                        <div class="contact-form-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="text" name="contact-name" id="contact-name" class="form-control" placeholder="Full name" required>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-12">
+                                                    <input type="email" name="contact-email" id="contact-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+                                                </div>
+                                            </div>
+
+                                            <input type="text" name="contact-company" id="contact-company" class="form-control" placeholder="Company" required>
+
+                                            <textarea name="contact-message" rows="3" class="form-control" id="contact-message" placeholder="Message"></textarea>
+
+                                            <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                                <button type="submit" class="form-control">Send message</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel" aria-labelledby="nav-ContactMap-tab">
+                                    <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29974.469402870927!2d120.94861466021855!3d14.106066818082482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd777b1ab54c8f%3A0x6ecc514451ce2be8!2sTagaytay%2C%20Cavite%2C%20Philippines!5e1!3m2!1sen!2smy!4v1670344209509!5m2!1sen!2smy" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12">
+                            <h2 class="text-white mb-lg-0">Festava Live</h2>
+                        </div>
+
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-twitter"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-apple"></span>
+                                    </a>
+                                </li>
+    
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-youtube"></span>
+                                    </a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-pinterest"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12 mb-4 pb-2">
+                        <h5 class="site-footer-title mb-3">Links</h5>
+
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Home</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">About</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Artists</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Schedule</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Pricing</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Have a question?</h5>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: 090-080-0760" class="site-footer-link">
+                                090-080-0760
+                            </a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:hello@company.com" class="site-footer-link">
+                                hello@company.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                        <h5 class="site-footer-title mb-3">Location</h5>
+
+                        <p class="text-white d-flex mt-3 mb-2">
+                        Silang Junction South, Tagaytay, Cavite, Philippines</p>
+
+                        <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                            <span>Our Maps</span>
+                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text">Copyright © 2036 Festava Live Company</p>
+                        </div>
+
+                        <div class="col-lg-8 col-12 mt-lg-5">
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Privacy Policy</a>
+                                </li>
+
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Your Feedback</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+<!--
+
+T e m p l a t e M o
+
+-->
+        {% block js %}
+        <!-- JAVASCRIPT FILES -->
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+        <script src="{{ asset('js/click-scroll.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
+        {% endblock %}
+    {% endblock %}
+    </body>
+</html>

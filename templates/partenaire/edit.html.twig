@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Partenaire{% endblock %}
+
+{% block body %}
+    <h1>Edit Partenaire</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nomP) }}
+        {{ form_row(form.emailP) }}
+        {{ form_row(form.telephone) }}
+        {{ form_row(form.typeP) }}
+        {{ form_row(form.collaboration) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_partenaire_view') }}">Back to list</a>
+{% endblock %}

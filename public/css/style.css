@@ -25,9 +25,9 @@ input {
   height: 100%;
   top: 0;
   left: 0;
-  max-height: 100vh; /* Limit height to the viewport height */
+  max-height: 300vh; /* Keep this to limit height to viewport */
   overflow-y: auto; /* Enable vertical scrolling if content overflows */
-  padding: 20px 0; /* Add some padding to prevent content from touching the edges */
+  padding: 100px 0; /* Add some padding */
 }
 
 .signin-signup {
@@ -50,10 +50,11 @@ form {
   padding: 0rem 5rem;
   transition: all 0.2s 0.7s;
   overflow-y: auto; /* Enable scrolling inside the form */
-  max-height: 80vh; /* Limit form height to 80% of the viewport height */
+  max-height: 90%; /* Increased form height to 90% of the viewport height */
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
+
 
 form.sign-up-form {
   opacity: 0;

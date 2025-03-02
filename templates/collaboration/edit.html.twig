@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Collaboration{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4" style="color: #ff4500; font-weight: bold;">Edit Collaboration</h1>
+
+        <div class="card shadow-lg rounded" style="border: none;">
+            <div class="card-header" style="background-color: #ff4500; color: white; border-radius: 15px 15px 0 0;">
+                <h5 class="mb-0">Collaboration Details</h5>
+            </div>
+            <div class="card-body">
+                {{ include('collaboration/_form.html.twig', {'button_label': 'Update'}) }}
+
+                <div class="button-group mt-4">
+                    <a href="{{ path('app_collaboration_index') }}" class="btn btn-outline-danger" style="border-radius: 25px; transition: background 0.3s;">Back to List</a>
+                    {{ include('collaboration/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center mt-4">
+            <p style="color: #6c757d;">&copy; {{ "now"|date("Y") }} Your Company Name. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for contrast */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .btn-custom {
+            background-color: #ff7f50; /* Light orange */
+            color: white;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff4500; /* Dark orange */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .btn-outline-danger {
+            color: #ff4500;
+            border: 2px solid #ff4500;
+            border-radius: 25px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .btn-outline-danger:hover {
+            background: #ff4500;
+            color: white;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+    </style>
+{% endblock %}

@@ -40,4 +40,26 @@ class UserRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    /**
+     * Find users by a search term.
+     *
+     * @param string $searchTerm The term to search for.
+     * @return User[] Returns an array of User objects.
+     */
+    public function findBySearchTerm(string $searchTerm): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.nom LIKE :searchTerm')
+            ->orWhere('u.prenom LIKE :searchTerm')
+            ->orWhere('u.email LIKE :searchTerm')
+            ->orWhere('u.numTel LIKE :searchTerm')
+            ->orWhere('u.companyName LIKE :searchTerm')
+            ->orWhere('u.address LIKE :searchTerm')
+            ->orWhere('u.role LIKE :searchTerm')
+            ->orWhere('u.status LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->orderBy('u.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

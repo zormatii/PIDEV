@@ -34,10 +34,17 @@ app_user_edit:
     path: /user/{id}/edit
     controller: App\Controller\UserController::edit
 
-app_user_delete:
-    path: /user/{id}
-    controller: App\Controller\UserController::delete
+
 
 tables:
     path: /tables
     controller: App\Controller\DashController::tables
+
+
+api_formations:
+    path: /api/formations
+    controller: App\Controller\FormationController::getFormations
+    methods: GET    
+api_evenements:
+  path: /api/evenements
+  controller: App\Controller\ApiEvenementController::getEvenements

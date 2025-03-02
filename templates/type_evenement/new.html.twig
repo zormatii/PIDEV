@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un Type d'événement{% endblock %}
+
+{% block body %}
+  <h1>Créer un nouveau Type d'événement</h1>
+
+  {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">Create</button>
+    
+  {{ form_end(form) }}
+
+<a href="{{ path('app_type_evenement_index', { 'id': categorie.id }) }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

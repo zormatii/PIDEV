@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Evenement
+{% endblock %}
+
+{% block body %}
+  <h1>Evenement</h1>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Id</th>
+        <td>{{ evenement.id }}</td>
+      </tr>
+      <tr>
+        <th>Title</th>
+        <td>{{ evenement.titre }}</td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ evenement.description }}</td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>{{ evenement.lieu }}</td>
+      </tr>
+      <tr>
+        <th>Number of seats</th>
+        <td>{{ evenement.nombreDePlaces }}</td>
+      </tr>
+      <tr>
+        <th>Start date</th>
+        <td>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+      </tr>
+      <tr>
+        <th>End date</th>
+        <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+      </tr>
+      <tr>
+        <th>Statut</th>
+        <td>
+          {% if evenement.statut == 'en attente' %}
+            <span class="badge bg-warning text-dark">En attente</span>
+          {% elseif evenement.statut == 'accepté' %}
+            <span class="badge bg-success">Accepté</span>
+          {% elseif evenement.statut == 'refusé' %}
+            <span class="badge bg-danger">Refusé</span>
+          {% else %}
+            Inconnu
+          {% endif %}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Type d'événement</th>
+        <td>
+          {% if evenement.typeEvenement %}
+            {{ evenement.typeEvenement.nom }}
+          {% else %}
+            N/A
+          {% endif %}
+        </td>
+      </tr>
+
+      <tr>
+        <th>Image</th>
+        <td>
+          {% if evenement.urlImage %}
+            <img src="{{ asset('uploads/images/' ~ evenement.urlImage) }}" alt="Image de l'événement" width="100">
+          {% else %}
+            No available image
+          {% endif %}
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <a href="{{ path('app_evenement_index') }}">Back to list</a>
+
+{% endblock %}

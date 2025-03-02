@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ typeEvenement.nom }} - Details</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 20px;
+        }
+        .header img {
+            max-width: 150px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            color: #007BFF;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        .header p {
+            font-size: 1.1em;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* Information Sections */
+        .info-section {
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .info-section h2 {
+            color: #007BFF;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            font-size: 1.5em;
+        }
+        .info-section p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* Events Section */
+        .events-section {
+            margin-top: 30px;
+        }
+        .events-section h2 {
+            color: #007BFF;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            font-size: 1.5em;
+        }
+        .event-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .event-card img {
+            max-width: 100px;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        .event-details {
+            flex: 1;
+        }
+        .event-details h3 {
+            margin: 0 0 10px 0;
+            color: #007BFF;
+            font-size: 1.3em;
+        }
+        .event-details p {
+            margin: 3px 0;
+            color: #555;
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        /* Labels for Emphasis */
+        .label {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        /* Additional Styling */
+        .highlight {
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Event Type: {{ typeEvenement.nom }}</h1>
+        <img src="{{ absolute_url(asset(typeEvenement.urlImage ? 'uploads/images/' ~ typeEvenement.urlImage : 'images/default-category.jpg')) }}" alt="{{ typeEvenement.nom }}">
+        {% if typeEvenement.categorie %}
+            <p><span class="label">Category:</span> {{ typeEvenement.categorie.nom }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Description Section -->
+    <div class="info-section">
+        <h2>Description</h2>
+        <p>{{ typeEvenement.description|default('No description available for this event type.') }}</p>
+    </div>
+    
+    <!-- Additional Details Section -->
+    <div class="info-section">
+        <h2>Additional Details</h2>
+        {% if typeEvenement.categorie %}
+            <p><span class="label">Category:</span> {{ typeEvenement.categorie.nom }}</p>
+            <p><span class="label">Category Description:</span> {{ typeEvenement.categorie.description|default('No description available.') }}</p>
+        {% endif %}
+        <p><span class="label">Number of Associated Events:</span> {{ evenements|length }}</p>
+    </div>
+    
+    <!-- Events List Section -->
+    <div class="events-section">
+        <h2>List of Events Belonging to This Type</h2>
+        {% if evenements|length > 0 %}
+            {% for evenement in evenements %}
+                <div class="event-card">
+                    <img src="{{ absolute_url(asset(evenement.urlImage ? 'uploads/images/' ~ evenement.urlImage : 'images/default-event.jpg')) }}" alt="{{ evenement.titre }}">
+                    <div class="event-details">
+                        <h3>{{ evenement.titre }}</h3>
+                        <p><span class="label">Description:</span> {{ evenement.description }}</p>
+                        <p><span class="label">Location:</span> {{ evenement.lieu }}</p>
+                        <p><span class="label">Number of Seats:</span> {{ evenement.nombreDePlaces }}</p>
+                        <p><span class="label">Start Date:</span> {{ evenement.dateDebut|date('d/m/Y H:i') }}</p>
+                        <p><span class="label">End Date:</span> {{ evenement.dateFin|date('d/m/Y H:i') }}</p>
+                        <p><span class="label">Status:</span> {{ evenement.statut }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No events available for this type.</p>
+        {% endif %}
+    </div>
+    
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Document generated on {{ "now"|date("d/m/Y H:i") }}</p>
+    </div>
+</body>
+</html>

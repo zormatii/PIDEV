@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un Workshop{% endblock %}
+
+{% block body %}
+<video autoplay muted loop class="video-background">
+    <source src="{{ asset('video/pexels-2022395.mp4') }}" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<div class="container-form">
+    <h1>Créer un nouveau Workshop</h1>
+
+    {% if form.vars.errors|length > 0 %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Erreur !</strong> Respecter le format.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+
+    <div class="mb-3">
+        {{ form_label(form.titre, 'Titre du workshop', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.titre) }}</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.description) }}</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.date, 'Date du workshop', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">{{ form_errors(form.date) }}</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.lieu, 'Lieu', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.lieu, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.lieu) }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.capicite, 'Capacité', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.capicite, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.capicite) }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.duree, 'Durée', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.duree, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.duree) }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">submit</button>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

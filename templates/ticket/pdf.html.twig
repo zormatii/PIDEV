@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket PDF</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .ticket-container {
+            width: 700px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 2px dashed #ff0060;
+            padding: 20px;
+        }
+
+        .ticket-header {
+            background: #ff0060;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .ticket-body {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ticket-details {
+            text-align: left;
+            flex: 1;
+        }
+
+        .ticket-details p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .ticket-details strong {
+            color: #333;
+        }
+
+        .qr-code {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .qr-code img {
+            width: 180px;
+            height: auto;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-footer {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            background: #f1f1f1;
+            padding: 15px;
+            border-top: 2px dashed #ddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-container">
+        <!-- 🎟️ En-tête du ticket -->
+        <div class="ticket-header">
+            Votre Ticket
+        </div>
+
+        <!-- 📋 Détails du ticket & QR Code -->
+        <div class="ticket-body">
+            <!-- Texte aligné à gauche -->
+            <div class="ticket-details">
+                <p><strong>ID :</strong> {{ ticket.id }}</p>
+                <p><strong>Nom :</strong> {{ ticket.nom }}</p>
+                <p><strong>Prénom :</strong> {{ ticket.prenom }}</p>
+                <p><strong>Téléphone :</strong> {{ ticket.numeroTelephone }}</p>
+                <p><strong>Email :</strong> {{ ticket.email }}</p>
+                <p><strong>Date :</strong> {{ ticket.date ? ticket.date|date('d-m-Y') : 'N/A' }}</p>
+                <p><strong>Prix :</strong> {{ ticket.prix }} TND</p>
+            </div>
+
+            <!-- 📌 QR Code bien centré (verticalement et horizontalement) -->
+            <div class="qr-code">
+                <img src="{{ qrCode }}" alt="QR Code">
+            </div>
+        </div>
+
+        <!-- 👣 Pied de page -->
+        <div class="ticket-footer">
+            Merci pour votre réservation ! <br>
+            <strong>Viva Culture</strong> | Tous droits réservés
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte avec Leaflet{% endblock %}
+
+{% block body %}
+    <div id="map" style="width: 100%; height: 500px;"></div>
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="{{ path('app_evenement_index') }}" class="btn btn-primary">Retour à la liste des événements</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Récupérer les coordonnées de l'événement sélectionné
+            var latitude = parseFloat("{{ evenement.latitude }}");
+            var longitude = parseFloat("{{ evenement.longitude }}");
+
+            // Initialiser la carte centrée sur l'événement
+            var map = L.map('map').setView([latitude, longitude], 13);
+
+            // Ajouter les tuiles OpenStreetMap
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Ajouter le marqueur pour l'événement avec une option title vide pour éviter le label "Mark"
+            var marker = L.marker([latitude, longitude], { title: "" }).addTo(map);
+
+            // Construire le contenu du popup
+            var popupContent = `<b>Nom de l'événement : {{ evenement.titre }}</b><br>
+Date : {{ evenement.dateDebut|date("Y-m-d H:i") }}<br>
+<img src="{{ asset(evenement.urlImage ? 'uploads/images/' ~ evenement.urlImage : 'images/default-event.jpg') }}" alt="{{ evenement.titre }}" width="150">`;
+
+            // Lier le popup au marqueur et l'ouvrir
+            marker.bindPopup(popupContent).openPopup();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'back/dashboard.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header p-3">
+                        <h5 class="mb-0">User Index</h5>
+                        <a href="{{ path('app_user_new') }}" class="btn btn-success btn-sm">Add User</a>
+                    </div>
+                    <div class="card-body p-3">
+                        <!-- Search Bar -->
+                        <form method="get" action="{{ path('app_user_index') }}" class="mb-4">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search users..." value="{{ app.request.query.get('q') }}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prenom</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NumTel</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sexe</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CompanyName</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Matricule</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td class="text-xs font-weight-bold">{{ user.id }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.nom }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.prenom }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.email }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.password }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.numTel }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.sexe }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.address }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.companyName }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.matricule }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.role }}</td>
+                                        <td class="text-xs font-weight-bold">{{ user.status }}</td>
+                                        <td class="text-xs font-weight-bold">
+                                            {% if user.image %}
+                                                <img src="{{ asset('uploads/images/' ~ user.image) }}" alt="User Image" width="50">
+                                            {% else %}
+                                                No Image
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-xs font-weight-bold">
+                                            <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                                           {{ include('user/_delete_form.html.twig') }}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="14" class="text-center">No records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partenaire{% endblock %}
+
+{% block body %}
+    <h1>Partenaire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id_p</th>
+                <td>{{ partenaire.idP }}</td>
+            </tr>
+            <tr>
+                <th>Nom_p</th>
+                <td>{{ partenaire.nomP }}</td>
+            </tr>
+            <tr>
+                <th>Email_p</th>
+                <td>{{ partenaire.emailP }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ partenaire.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Type_p</th>
+                <td>{{ partenaire.typeP }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ description }}</td>  <!-- Displaying the description -->
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_partenaire_view') }}">Back to list</a>
+    <a href="{{ path('app_partenaire_update', {'id': partenaire.id}) }}">Edit</a>
+
+    {{ include('partenaire/_delete_form.html.twig') }}
+{% endblock %}

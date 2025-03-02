@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reservation{% endblock %}
+
+{% block body %}
+<header class="site-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex flex-wrap">
+                <p class="d-flex align-items-center mb-0">
+                    <i class="bi-person custom-icon me-2"></i>
+                    <strong class="text-dark">Welcome to Viva Culture 2025</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Section principale -->
+<section class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h2 class="text-center text-primary mb-4">Edit Reservation</h2>
+
+                <!-- Formulaire de mise à jour -->
+                {{ include('reservation/_form.html.twig', {'button_label': 'Update'}) }}
+
+                <!-- Boutons d'action -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="{{ path('app_reservation_index') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Back to list
+                    </a>
+                    {{ include('reservation/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer mt-5">
+    <div class="site-footer-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="text-white">Viva Culture</h2>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <ul class="social-icon list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="social-icon-link"><span class="bi-twitter"></span></a></li>
+                        <li class="list-inline-item"><a href="#" class="social-icon-link"><span class="bi-apple"></span></a></li>
+                        <li class="list-inline-item"><a href="#" class="social-icon-link"><span class="bi-instagram"></span></a></li>
+                        <li class="list-inline-item"><a href="#" class="social-icon-link"><span class="bi-youtube"></span></a></li>
+                        <li class="list-inline-item"><a href="#" class="social-icon-link"><span class="bi-pinterest"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <h5 class="site-footer-title">Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="site-footer-link">Home</a></li>
+                    <li><a href="#" class="site-footer-link">About</a></li>
+                    <li><a href="#" class="site-footer-link">Artists</a></li>
+                    <li><a href="#" class="site-footer-link">Schedule</a></li>
+                    <li><a href="#" class="site-footer-link">Pricing</a></li>
+                    <li><a href="#" class="site-footer-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <h5 class="site-footer-title">Have a question?</h5>
+                <p class="mb-1"><a href="tel:090-080-0760" class="site-footer-link">090-080-0760</a></p>
+                <p><a href="mailto:VivaCulture@gmail.com" class="site-footer-link">VivaCulture@gmail.com</a></p>
+            </div>
+
+            <div class="col-lg-3">
+                <h5 class="site-footer-title">Location</h5>
+                <p class="mt-3 mb-2 text-white">Aiana</p>
+                <a href="#" class="text-white">Our Maps <i class="bi bi-map"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-footer-bottom py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <p class="copyright-text">© 2036 VivaCulture Company</p>
+                </div>
+                <div class="col-lg-8 text-lg-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="site-footer-link">Terms &amp; Conditions</a></li>
+                        <li class="list-inline-item"><a href="#" class="site-footer-link">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#" class="site-footer-link">Your Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

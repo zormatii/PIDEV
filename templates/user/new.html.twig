@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Create New User</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        {# Form starts here #}
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ form_label(field) }}
+                                    {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(field) }}
+                                </div>
+                            {% endfor %}
+
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Create</button>
+                                <a href="{{ path('tables') }}" class="btn btn-outline-secondary">Back to List</a>
+                            </div>
+                        {{ form_end(form) }}
+                        {# Form ends here #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

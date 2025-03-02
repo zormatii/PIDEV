@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Formation{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Créer une Formation</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.titre, 'Titre de la Formation', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.titre.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.datedebut, 'Date de début', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.datedebut, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.datedebut.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.datefin, 'Date de fin', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.datefin, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.datefin.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.capacite, 'Capacité', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.capacite, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.capacite.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.modeFormation, 'Mode de Formation', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.modeFormation, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.modeFormation.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.statut, 'Statut', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.statut, {'attr': {'class': 'form-check-input'}}) }}
+            <div class="text-danger">
+                {% for error in form.statut.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

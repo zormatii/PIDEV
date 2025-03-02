@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques par Catégorie{% endblock %}
+
+{% block body %}
+    <div class="container mt-4 text-center">
+        <h1 class="mb-4">Statistics by category</h1>
+
+        <!-- Calcul du nombre total d'événements -->
+        {% set totalEvenements = stats|reduce((carry, item) => carry + item.nombreEvenements, 0) %}
+        <h3 class="text-info mb-4">Total of events: {{ totalEvenements }}</h3>
+
+        <!-- Canvas pour le graphique -->
+        <div class="d-flex justify-content-center">
+            <canvas id="myChart" style="max-width: 600px;"></canvas>
+        </div>
+    </div>
+
+    <!-- Inclusion de Chart.js via un CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Convertir la variable Twig 'stats' en un objet JavaScript
+        const statsData = {{ stats|json_encode|raw }};
+
+        // Extraire les noms de catégorie et le nombre d'événements
+        const labels = statsData.map(item => item.nomCategorie);
+        const data = statsData.map(item => item.nombreEvenements);
+
+        // Récupérer le contexte du canvas
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Créer un graphique en barres
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre d\'événements',
+                    data: data,
+                    backgroundColor: 'rgba(0, 128, 128, 0.7)', // Teal avec transparence
+                    borderColor: 'black',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1 // Assure que les valeurs sont bien affichées
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                barPercentage: 0.6, // Ajuste la largeur des barres
+                categoryPercentage: 0.7 // Ajuste l'espacement entre elles
+            }
+        });
+    </script>
+{% endblock %}

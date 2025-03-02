@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Edit User</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="{{ path('tables') }}" class="btn btn-outline-secondary">Back to List</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

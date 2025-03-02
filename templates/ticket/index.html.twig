@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket Index{% endblock %}
+
+{% block body %}
+<header class="site-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+                <p class="d-flex me-4 mb-0">
+                    <i class="bi-person custom-icon me-2"></i>
+                    <strong class="text-dark">Welcome to Viva Culture 2025</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<h1>Ticket Index</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Numéro de Téléphone</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Prix</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.nom }}</td>
+                <td>{{ ticket.prenom }}</td>
+                <td>{{ ticket.numeroTelephone }}</td>
+                <td>{{ ticket.email }}</td>
+                <td>{{ ticket.date ? ticket.date|date('Y-m-d') : '' }}</td>
+                <td>{{ ticket.prix }} TND</td>
+                <td>
+                    <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}" class="btn btn-info btn-sm">Show</a>
+                    <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ path('app_ticket_pdf', {'id': ticket.id}) }}" class="btn btn-success btn-sm" target="_blank">Download PDF</a>
+                    <form action="{{ path('app_ticket_delete', {'id': ticket.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this ticket?');" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ticket.id) }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No records found</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if tickets is not empty %}
+    <a href="{{ path('app_ticket_new', { 'reservationId': tickets|first.reservation ? tickets|first.reservation.id : 1 }) }}" class="btn btn-success">Create New Ticket</a>
+{% else %}
+    <a href="{{ path('app_ticket_new', { 'reservationId': 1 }) }}" class="btn btn-success">Create New Ticket</a>
+{% endif %}
+
+<footer class="site-footer">
+    <div class="site-footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <h2 class="text-white mb-lg-0">Viva Culture</h2>
+                </div>
+
+                <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                    <ul class="social-icon d-flex justify-content-lg-end">
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link"><span class="bi-twitter"></span></a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link"><span class="bi-apple"></span></a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link"><span class="bi-instagram"></span></a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link"><span class="bi-youtube"></span></a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="#" class="social-icon-link"><span class="bi-pinterest"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4 pb-2">
+                <h5 class="site-footer-title mb-3">Links</h5>
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item"><a href="#" class="site-footer-link">Home</a></li>
+                    <li class="site-footer-link-item"><a href="#" class="site-footer-link">About</a></li>
+                    <li class="site-footer-link-item"><a href="#" class="site-footer-link">Artists</a></li>
+                    <li class="site-footer-link-item"><a href="#" class="site-footer-link">Schedule</a></li>
+                    <li class="site-footer-link-item"><a href="#" class="site-footer-link">Pricing</a></li>
+                    <li class="site-footer-link-item"><a href="#" class="site-footer-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                <h5 class="site-footer-title mb-3">Have a Question?</h5>
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: 090-080-0760" class="site-footer-link">090-080-0760</a>
+                </p>
+                <p class="text-white d-flex">
+                    <a href="mailto:VivaCulture@gmail.com" class="site-footer-link">VivaCulture@gmail.com</a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                <h5 class="site-footer-title mb-3">Location</h5>
+                <p class="text-white d-flex mt-3 mb-2">Aiana</p>
+                <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                    <span>Our Maps</span>
+                    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mt-5">
+                    <p class="copyright-text">Copyright © 2036 VivaCulture Company</p>
+                </div>
+
+                <div class="col-lg-8 col-12 mt-lg-5">
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item"><a href="#" class="site-footer-link">Terms & Conditions</a></li>
+                        <li class="site-footer-link-item"><a href="#" class="site-footer-link">Privacy Policy</a></li>
+                        <li class="site-footer-link-item"><a href="#" class="site-footer-link">Your Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

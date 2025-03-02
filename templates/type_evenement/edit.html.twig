@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Type d'événement{% endblock %}
+
+{% block body %}
+  <h1>Modifier le Type d'événement</h1>
+
+  {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">Update</button>
+  {{ form_end(form) }}
+
+<a href="{{ path('tables', { 'id': typeEvenement.id }) }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}

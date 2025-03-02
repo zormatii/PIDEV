@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+
+    <h1>Categorie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie.id }}</td>
+            </tr>
+            <tr>
+                <th>Type of category</th>
+                <td>{{ categorie.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ categorie.description }}</td>
+            </tr>
+            <tr>
+        <th>Image</th>
+        <td>
+          {% if categorie.urlImage %}
+            <img src="{{ asset('uploads/images/' ~ categorie.urlImage) }}" alt="Image de la categorie" width="100">
+          {% else %}
+            No available image
+          {% endif %}
+        </td>
+      </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ categorie.statut ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tables') }}">Back to list</a>
+
+  
+
+    
+{% endblock %}

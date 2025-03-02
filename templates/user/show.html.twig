@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Details{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">User Details</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Id</th>
+                                    <td class="text-dark font-weight-bold">{{ user.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Nom</th>
+                                    <td class="text-dark font-weight-bold">{{ user.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Prenom</th>
+                                    <td class="text-dark font-weight-bold">{{ user.prenom }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Email</th>
+                                    <td class="text-dark font-weight-bold">{{ user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">NumTel</th>
+                                    <td class="text-dark font-weight-bold">{{ user.numTel }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Sexe</th>
+                                    <td class="text-dark font-weight-bold">{{ user.sexe }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Address</th>
+                                    <td class="text-dark font-weight-bold">{{ user.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Company Name</th>
+                                    <td class="text-dark font-weight-bold">{{ user.companyName }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Matricule</th>
+                                    <td class="text-dark font-weight-bold">{{ user.matricule }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Role</th>
+                                    <td class="text-dark font-weight-bold">{{ user.role }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Status</th>
+                                    <td class="text-dark font-weight-bold">{{ user.status }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-muted text-uppercase text-xxs font-weight-bolder">Image</th>
+                                    <td class="text-dark font-weight-bold">
+                                        {% if user.image %}
+                                            <img src="{{ asset('uploads/images/' ~ user.image) }}" alt="User Image" class="img-fluid rounded" width="100">
+                                        {% else %}
+                                            No Image
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="{{ path('tables') }}" class="btn btn-outline-secondary">Back to list</a>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Edit</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,2 @@
+symfonycasts_verify_email:
+    lifetime: 3600 # Link expiration time in seconds (1 hour)

@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Collaboration{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Create New Collaboration</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+
+        {% for flash_message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+
+        <div class="mb-3">
+            {{ form_label(form.nom_c) }}
+            {{ form_widget(form.nom_c, {'attr': {'class': form.nom_c.vars.errors|length > 0 ? 'form-control is-invalid' : 'form-control', 'placeholder': 'Enter name', 'required': true}}) }}
+            {% if form.nom_c.vars.errors|length > 0 %}
+                <div class="invalid-feedback">
+                    {% for error in form.nom_c.vars.errors %}
+                        {{ error.message }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type, {'attr': {'class': form.type.vars.errors|length > 0 ? 'form-control is-invalid' : 'form-control', 'placeholder': 'Enter type', 'required': true}}) }}
+            {% if form.type.vars.errors|length > 0 %}
+                <div class="invalid-feedback">
+                    {% for error in form.type.vars.errors %}
+                        {{ error.message }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.date_sig) }}
+            {{ form_widget(form.date_sig, {'attr': {'class': form.date_sig.vars.errors|length > 0 ? 'form-control is-invalid' : 'form-control', 'required': true}}) }}
+            {% if form.date_sig.vars.errors|length > 0 %}
+                <div class="invalid-feedback">
+                    {% for error in form.date_sig.vars.errors %}
+                        {{ error.message }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.date_ex) }}
+            {{ form_widget(form.date_ex, {'attr': {'class': form.date_ex.vars.errors|length > 0 ? 'form-control is-invalid' : 'form-control', 'required': true}}) }}
+            {% if form.date_ex.vars.errors|length > 0 %}
+                <div class="invalid-feedback">
+                    {% for error in form.date_ex.vars.errors %}
+                        {{ error.message }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.status) }}
+            {{ form_widget(form.status, {'attr': {'class': form.status.vars.errors|length > 0 ? 'form-control is-invalid' : 'form-control', 'required': true}}) }}
+            {% if form.status.vars.errors|length > 0 %}
+                <div class="invalid-feedback">
+                    {% for error in form.status.vars.errors %}
+                        {{ error.message }}<br>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Create</button>
+
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_collaboration_index') }}" class="btn btn-secondary mt-3">Back to list</a>
+    </div>
+
+    <script>
+        // Bootstrap validation script
+        (function () {
+            'use strict';
+
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+{% endblock %}

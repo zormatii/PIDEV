@@ -1,0 +1,26 @@
+{{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.numTel) }}
+    {{ form_row(form.sexe) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.companyName) }}
+    {{ form_row(form.matricule) }}
+    {{ form_row(form.role) }}
+    {{ form_row(form.status) }}
+
+    {# Display the current image if it exists #}
+    {% if user.image %}
+        <div class="mb-3">
+            <label>Current Image:</label>
+            <img src="{{ asset('uploads/images/' ~ user.image) }}" alt="Current Image" style="max-width: 200px;">
+        </div>
+    {% endif %}
+
+    {# File upload field for a new image #}
+    {{ form_row(form.image) }}
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

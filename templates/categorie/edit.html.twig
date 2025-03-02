@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Edit Category</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(form.nom, 'Name', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.url_image, 'Image', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.url_image, {'attr': {'class': 'form-control'}}) }}
+            <div class="text-danger">
+                {% for error in form.url_image.vars.errors %}
+                    <span class="error-message">{{ error.message }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+    {{ form_widget(form.statut, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_label(form.statut, null, {'label_attr': {'class': 'form-check-label'}}) }}
+</div>
+
+
+
+       
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ path('app_categorie_index') }}" class="btn btn-secondary">Back to list</a>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
